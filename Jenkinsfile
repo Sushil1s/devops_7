@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Running Selenium UI Tests...'
                 // This command runs your python test script
-                sh 'python3 -m unittest tests/test_ui.py'
+                sh 'python3 -m unittest discover tests'
             }
         }
         stage('Deploy') {

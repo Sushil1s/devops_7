@@ -1,26 +1,20 @@
-stage('Build') {
-            steps {
-                echo 'Building Docker Image...'
-                sh 'docker build -t sushilchavan02/devops_7:latest .'
-                
-                // ADD THIS LINE to upload the image to Docker Hub
-                sh 'docker push sushilchavan02/devops_7:latest'
-            }
-        	}pipeline {
-    			agent any
+pipeline {
+    agent any
 
-    			stages {
-        		stage('Clone') {
-            	steps {
-                	checkout scm
-            	}
+    stages {
+        stage('Clone') {
+            steps {
+                checkout scm
             }
+        }
         
         stage('Build') {
             steps {
                 echo 'Building Docker Image...'
-                // Updated with your actual Docker Hub username
                 sh 'docker build -t sushilchavan02/devops_7:latest .'
+                
+                echo 'Pushing image to Docker Hub...'
+                sh 'docker push sushilchavan02/devops_7:latest'
             }
         }
         

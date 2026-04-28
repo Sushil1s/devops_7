@@ -1,12 +1,20 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Clone') {
+stage('Build') {
             steps {
-                checkout scm
+                echo 'Building Docker Image...'
+                sh 'docker build -t sushilchavan02/devops_7:latest .'
+                
+                // ADD THIS LINE to upload the image to Docker Hub
+                sh 'docker push sushilchavan02/devops_7:latest'
             }
-        }
+        	}pipeline {
+    			agent any
+
+    			stages {
+        		stage('Clone') {
+            	steps {
+                	checkout scm
+            	}
+            }
         
         stage('Build') {
             steps {
